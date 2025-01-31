@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will You Be My Valentine?</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script:wght@700&display=swap');
+
+    body {
+      font-family: 'Pacifico', cursive;
+      background: linear-gradient(135deg, #fff5f5 0%, #ffe6e6 100%);
+      color: #333;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      position: relative;
+      max-width: 90%;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #ff6f61;
+      font-family: 'Dancing Script', cursive;
+    }
+    p {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      color: #555;
+    }
+    .button {
+      background: #ff6f61;
+      color: #fff;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-family: 'Pacifico', cursive;
+    }
+    .button:hover {
+      background: #ff3b2f;
+    }
+    .button:active {
+      animation: pulse 0.4s ease;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    .heart, .teddy {
+      position: absolute;
+      color: #ff6f61;
+      font-size: 30px;
+      animation: float 5s infinite ease-in-out;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100vh); opacity: 0; }
+    }
+    #photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 20px auto;
+      background: url('https://i.imgur.com/your-photo-id.jpg') no-repeat center/cover;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 2.5rem; }
+      p { font-size: 1.2rem; }
+      .button { font-size: 1.2rem; padding: 12px 25px; }
+      #photo { width: 120px; height: 120px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="photo"></div>
+    <h1>Hey Bubby,</h1>
+    <p>You’re my favorite person, and I’d be the luckiest to spend Valentine’s Day with you. Will you be my Valentine, my love?</p>
+    <button class="button" onclick="askPassword()">Yes!</button>
+  </div>
+
+  <script>
+    function askPassword() {
+      const password = prompt("It's something sweet you always hear from me ❤️");
+      if (password.toLowerCase() === "i love you") { 
+        document.querySelector('.container').innerHTML = `
+          <h1 style="font-size: 4rem;">YAYYYYYYYYYY!</h1>
+          <p style="font-size: 2.5rem;">WE LOCKED IN FOREVER NOW</p>
+        `;
+        createHearts();
+        createTeddies();
+      } else {
+        alert("Wrong password, silly! Try again.");
+      }
+    }
+
+    function createHearts() {
+      let count = window.innerWidth < 600 ? 50 : 100;
+      for (let i = 0; i < count; i++) {
+        const heart = document.createElement('div');
+        heart.innerHTML = '❤️';
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+        document.body.appendChild(heart);
+      }
+    }
+
+    function createTeddies() {
+      let count = window.innerWidth < 600 ? 10 : 20;
+      for (let i = 0; i < count; i++) {
+        const teddy = document.createElement('div');
+        teddy.classList.add('teddy');
+        teddy.style.left = Math.random() * 100 + 'vw';
+        teddy.style.animationDuration = Math.random() * 4 + 3 + 's';
+        document.body.appendChild(teddy);
+      }
+    }
+  </script>
+</body>
+</html>
